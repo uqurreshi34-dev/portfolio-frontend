@@ -1,3 +1,4 @@
+// components/Contact.tsx
 'use client';
 
 import { useState } from 'react';
@@ -22,7 +23,8 @@ export default function Contact() {
             setStatus('success');
             setFormData({ name: '', email: '', subject: '', message: '' });
         } catch (error) {
-            setStatus(`error: ${error}`);
+            console.error('Contact form error:', error);
+            setStatus('error');
         }
     };
 
@@ -38,7 +40,7 @@ export default function Contact() {
                             required
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
+                            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                         />
                     </div>
                     <div>
@@ -48,7 +50,7 @@ export default function Contact() {
                             required
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
+                            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                         />
                     </div>
                     <div>
@@ -58,7 +60,7 @@ export default function Contact() {
                             required
                             value={formData.subject}
                             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
+                            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                         />
                     </div>
                     <div>
@@ -68,7 +70,7 @@ export default function Contact() {
                             rows={5}
                             value={formData.message}
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
+                            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                         />
                     </div>
                     <button
