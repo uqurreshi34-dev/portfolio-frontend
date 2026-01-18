@@ -17,27 +17,27 @@ export default function Hero() {
                         Shuaib & Ashar
                     </h1>
                     <motion.p
-                        className="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-8 relative overflow-hidden tracking-wide"
+                        className="relative text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-8 overflow-hidden tracking-wide"
                         initial={{ opacity: 0.2 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1.5, delay: 0.9 }}
                     >
-                        {/* The actual visible text – appears only once */}
+                        {/* Text with permanent glow */}
                         <span className="relative z-10 drop-shadow-[0_0_16px_rgba(99,102,241,0.7)] dark:drop-shadow-[0_0_20px_rgba(139,92,246,0.8)]">
                             Full Stack Developers & Creative Problem Solvers
                         </span>
 
-                        {/* Color-shifting ripple glow layer */}
+                        {/* Animated color-shifting background glow */}
                         <motion.span
-                            className="absolute inset-0 bg-gradient-to-r from-blue-500/60 via-indigo-500/50 to-purple-500/40 rounded-full blur-3xl -z-10 pointer-events-none"
+                            className="absolute inset-0 rounded-full blur-3xl -z-10 pointer-events-none"
                             initial={{ scale: 0.4, opacity: 0 }}
                             animate={{
                                 scale: [0.4, 2.2, 1.2],
                                 opacity: [0, 0.95, 0.4],
                                 background: [
-                                    "linear-gradient(to right, #3b82f6/60, #6366f1/50, #8b5cf6/40)",
-                                    "linear-gradient(to right, #6366f1/60, #8b5cf6/50, #a78bfa/40)",
-                                    "linear-gradient(to right, #8b5cf6/60, #a78bfa/50, #c084fc/40)",
+                                    "linear-gradient(to right, #3b82f6 60%, #6366f1 50%, #8b5cf6 40%)",
+                                    "linear-gradient(to right, #6366f1 60%, #8b5cf6 50%, #a78bfa 40%)",
+                                    "linear-gradient(to right, #8b5cf6 60%, #a78bfa 50%, #c084fc 40%)",
                                 ],
                             }}
                             transition={{
