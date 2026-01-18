@@ -17,29 +17,34 @@ export default function Hero() {
                         Shuaib & Ashar
                     </h1>
                     <motion.p
-                        className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 relative overflow-hidden"
-                        initial={{ opacity: 0.3 }}
+                        className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-8 relative overflow-hidden tracking-wider"
+                        initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 1.2, delay: 0.8 }} // slight delay after name animation
+                        transition={{ duration: 1.5, delay: 1.0 }}
                     >
                         Full Stack Developers & Creative Problem Solvers
 
-                        {/* Ripple glow layer */}
+                        {/* Dramatic ripple */}
                         <motion.span
-                            className="absolute inset-0 bg-gradient-to-r from-blue-400/40 to-indigo-500/30 rounded-full blur-2xl -z-10 pointer-events-none"
-                            initial={{ scale: 0.6, opacity: 0 }}
+                            className="absolute inset-0 bg-gradient-to-r from-blue-600/60 via-indigo-600/50 to-purple-600/40 rounded-[100%] blur-[4rem] -z-10 pointer-events-none"
+                            initial={{ scale: 0.3, opacity: 0 }}
                             animate={{
-                                scale: [0.6, 1.5, 1.1],
-                                opacity: [0, 0.7, 0.25],
+                                scale: [0.3, 2.5, 1.3],
+                                opacity: [0, 1.0, 0.4],
                             }}
                             transition={{
-                                duration: 2.8,
+                                duration: 4,
                                 ease: "easeOut",
-                                times: [0, 0.45, 1],
-                                repeat: 1,          // play twice for emphasis
-                                repeatDelay: 0.6,
+                                times: [0, 0.35, 1],
+                                repeat: 2,
+                                repeatDelay: 1.2,
                             }}
                         />
+
+                        {/* Stronger text glow */}
+                        <span className="relative z-10 drop-shadow-[0_0_20px_rgba(79,70,229,0.7)] dark:drop-shadow-[0_0_25px_rgba(99,102,241,0.8)]">
+                            Full Stack Developers & Creative Problem Solvers
+                        </span>
                     </motion.p>
                     <div className="flex gap-4 justify-center">
                         <a href="#projects" className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
