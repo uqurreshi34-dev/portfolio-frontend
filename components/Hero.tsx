@@ -14,10 +14,29 @@ export default function Hero() {
                     className="text-center"
                 >
                     <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-                        Shuaib Ashar
+                        Shuaib & Ashar
                     </h1>
-                    <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8">
-                        Full Stack Developer & Creative Problem Solver
+                    <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 overflow-hidden relative">
+                        <span className="relative inline-block">
+                            Full Stack Developers & Creative Problem Solvers
+
+                            {/* Ripple effect layer */}
+                            <motion.span
+                                className="absolute inset-0 bg-gradient-to-r from-blue-400/30 to-indigo-400/30 rounded-full blur-xl"
+                                initial={{ scale: 0.8, opacity: 0 }}
+                                animate={{
+                                    scale: [0.8, 1.4, 1],
+                                    opacity: [0, 0.6, 0],
+                                }}
+                                transition={{
+                                    duration: 2.5,
+                                    ease: "easeOut",
+                                    times: [0, 0.5, 1],
+                                    repeat: 1,           // plays twice for emphasis
+                                    repeatDelay: 0.8
+                                }}
+                            />
+                        </span>
                     </p>
                     <div className="flex gap-4 justify-center">
                         <a href="#projects" className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
