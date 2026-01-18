@@ -16,28 +16,31 @@ export default function Hero() {
                     <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
                         Shuaib & Ashar
                     </h1>
-                    <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 overflow-hidden relative">
-                        <span className="relative inline-block">
-                            Full Stack Developers & Creative Problem Solvers
+                    <motion.p
+                        className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 relative overflow-hidden"
+                        initial={{ opacity: 0.3 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1.2, delay: 0.8 }} // slight delay after name animation
+                    >
+                        Full Stack Developers & Creative Problem Solvers
 
-                            {/* Ripple effect layer */}
-                            <motion.span
-                                className="absolute inset-0 bg-gradient-to-r from-blue-400/30 to-indigo-400/30 rounded-full blur-xl"
-                                initial={{ scale: 0.8, opacity: 0 }}
-                                animate={{
-                                    scale: [0.8, 1.4, 1],
-                                    opacity: [0, 0.6, 0],
-                                }}
-                                transition={{
-                                    duration: 2.5,
-                                    ease: "easeOut",
-                                    times: [0, 0.5, 1],
-                                    repeat: 1,           // plays twice for emphasis
-                                    repeatDelay: 0.8
-                                }}
-                            />
-                        </span>
-                    </p>
+                        {/* Ripple glow layer */}
+                        <motion.span
+                            className="absolute inset-0 bg-gradient-to-r from-blue-400/40 to-indigo-500/30 rounded-full blur-2xl -z-10 pointer-events-none"
+                            initial={{ scale: 0.6, opacity: 0 }}
+                            animate={{
+                                scale: [0.6, 1.5, 1.1],
+                                opacity: [0, 0.7, 0.25],
+                            }}
+                            transition={{
+                                duration: 2.8,
+                                ease: "easeOut",
+                                times: [0, 0.45, 1],
+                                repeat: 1,          // play twice for emphasis
+                                repeatDelay: 0.6,
+                            }}
+                        />
+                    </motion.p>
                     <div className="flex gap-4 justify-center">
                         <a href="#projects" className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                             View Projects
