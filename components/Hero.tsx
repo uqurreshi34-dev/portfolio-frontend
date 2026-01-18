@@ -22,7 +22,11 @@ export default function Hero() {
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1.5, delay: 1.0 }}
                     >
-                        Full Stack Developers & Creative Problem Solvers
+
+                        {/* Stronger text glow */}
+                        <span className="relative z-10 drop-shadow-[0_0_20px_rgba(79,70,229,0.7)] dark:drop-shadow-[0_0_25px_rgba(99,102,241,0.8)]">
+                            Full Stack Developers & Creative Problem Solvers
+                        </span>
 
                         {/* Dramatic ripple */}
                         <motion.span
@@ -40,11 +44,6 @@ export default function Hero() {
                                 repeatDelay: 1.2,
                             }}
                         />
-
-                        {/* Stronger text glow */}
-                        <span className="relative z-10 drop-shadow-[0_0_20px_rgba(79,70,229,0.7)] dark:drop-shadow-[0_0_25px_rgba(99,102,241,0.8)]">
-                            Full Stack Developers & Creative Problem Solvers
-                        </span>
                     </motion.p>
                     <div className="flex gap-4 justify-center">
                         <a href="#projects" className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
