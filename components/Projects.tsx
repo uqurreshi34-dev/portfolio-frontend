@@ -42,15 +42,21 @@ export default function Projects() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
+                            viewport={{ once: true }} // optional: animate only once
                             className="bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition w-full sm:w-80 md:w-96"
+                            whileHover={{ scale: 1.05, y: -5 }} // optional nice hover lift (add if you want subtle scale)
                         >
                             {project.image && (
-                                <Image
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="w-full h-48 object-cover"
-                                    fill
-                                />
+                                <div className="relative w-full h-48 overflow-hidden"> {/* ← Critical wrapper! */}
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        fill
+                                        className="object-cover transition-transform duration-300 hover:scale-105" // smooth zoom on hover
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // better perf/responsiveness
+                                        priority={index < 3} // load first few faster
+                                    />
+                                </div>
                             )}
                             <div className="p-6">
                                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
