@@ -67,7 +67,7 @@ export default function Services() {
                             key={service.id}
                             // ... animation props ...
                             className={`
-                                w-full max-w-sm                
+                                w-full max-w-md                
                                 mx-auto                       
                                 bg-white dark:bg-gray-800
                                 rounded-xl p-6 md:p-8
