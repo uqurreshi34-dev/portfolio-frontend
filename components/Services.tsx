@@ -61,21 +61,23 @@ export default function Services() {
                 </div>
 
                 {/* Cards grid - this is the critical part */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
-                    {services.map((service) => (
+                {/* Cards grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    {services.map((service, index) => (
                         <motion.div
                             key={service.id}
-                            // ... animation props ...
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
                             className={`
-                                w-full max-w-md                
-                                mx-auto                       
-                                bg-white dark:bg-gray-800
-                                rounded-xl p-6 md:p-8
-                                shadow-lg hover:shadow-2xl
-                                transition-all duration-300
-                                border border-gray-100 dark:border-gray-700
-                                ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
-                            `}
+        bg-white dark:bg-gray-800
+        rounded-xl p-6 md:p-8
+        shadow-lg hover:shadow-2xl
+        transition-all duration-300
+        border border-gray-100 dark:border-gray-700
+        relative
+        ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
+      `}
                         >
                             {/* POPULAR badge */}
                             {service.featured && (
@@ -108,7 +110,6 @@ export default function Services() {
                                 </p>
                             )}
 
-                            {/* Features – left aligned is usually better for readability */}
                             <ul className="space-y-2.5 mb-8 text-left text-sm md:text-base">
                                 {service.features_list.map((feature, idx) => (
                                     <li key={idx} className="flex items-start gap-2.5">
@@ -127,6 +128,9 @@ export default function Services() {
                         </motion.div>
                     ))}
                 </div>
+
+
+
             </div>
         </section>
     );
