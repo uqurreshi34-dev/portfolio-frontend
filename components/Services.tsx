@@ -61,7 +61,7 @@ export default function Services() {
                 </div>
 
                 {/* Cards grid - this is the critical part */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {services.map((service, index) => (
                         <motion.div
                             key={service.id}
@@ -69,32 +69,39 @@ export default function Services() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            className={`w-full max-w-md bg-white dark:bg-gray-800 rounded-xl p-6 md:p-8 shadow-lg 
-          hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700
-          ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30 dark:shadow-blue-900/20' : ''}`}
+                            // ────────────────────────────────────────────────
+                            //   Most important lines are these three ↓↓↓
+                            className={`
+        mx-auto
+        w-full max-w-[380px]           ← adjust this value if you want cards wider/narrower
+        bg-white dark:bg-gray-800
+        rounded-xl p-6 md:p-8
+        shadow-lg hover:shadow-2xl
+        transition-all duration-300
+        border border-gray-100 dark:border-gray-700
+        ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30 dark:shadow-blue-900/20' : ''}
+      `}
+                        // ────────────────────────────────────────────────
                         >
+                            {/* POPULAR badge */}
                             {service.featured && (
-                                <span className="absolute -top-3 right-4 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-md">
+                                <span className="absolute -top-3 right-6 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-md">
                                     POPULAR
                                 </span>
                             )}
 
-                            {/* Icon - centered */}
                             <div className="flex justify-center mb-6 text-blue-600 dark:text-blue-400">
                                 {getIcon(service.icon)}
                             </div>
 
-                            {/* Title - centered */}
                             <h3 className="text-xl md:text-2xl font-bold mb-3 text-center">
                                 {service.title}
                             </h3>
 
-                            {/* Description - centered */}
                             <p className="text-gray-600 dark:text-gray-400 mb-5 text-center text-sm md:text-base">
                                 {service.description}
                             </p>
 
-                            {/* Price & Delivery - centered */}
                             {service.price_range && (
                                 <p className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-3 text-center">
                                     {service.price_range}
@@ -107,29 +114,25 @@ export default function Services() {
                                 </p>
                             )}
 
-                            {/* Features list → intentionally LEFT aligned (better readability) */}
-                            <ul className="space-y-2.5 mb-7 text-left text-sm md:text-base">
+                            {/* Features – left aligned is usually better for readability */}
+                            <ul className="space-y-2.5 mb-8 text-left text-sm md:text-base">
                                 {service.features_list.map((feature, idx) => (
-                                    <li key={idx} className="flex items-start gap-2.5 text-gray-700 dark:text-gray-300">
-                                        <span className="text-green-500 mt-1 text-lg shrink-0">✓</span>
+                                    <li key={idx} className="flex items-start gap-2.5">
+                                        <span className="text-green-500 mt-0.5 text-lg shrink-0">✓</span>
                                         <span>{feature}</span>
                                     </li>
                                 ))}
                             </ul>
 
-                            {/* Button - full width + centered text */}
                             <a
                                 href="#contact"
-                                className="block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 
-            text-white rounded-lg font-medium transition-all duration-300
-            shadow-md hover:shadow-lg active:scale-98"
+                                className="block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
                             >
                                 Get Started
                             </a>
                         </motion.div>
                     ))}
-                </div>
-            </div>
+                </div>            </div>
         </section>
     );
 }
