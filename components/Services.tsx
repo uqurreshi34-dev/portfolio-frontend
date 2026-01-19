@@ -25,9 +25,6 @@ export default function Services() {
         fetchServices();
     }, []);
 
-    // Fixed: Properly typed icon map
-    // This is an object that works as a dictionary / lookup table 
-    // where keys are strings and values are of type LucideIcon
     const iconMap: Record<string, LucideIcon> = {
         Code,
         Server,
@@ -39,11 +36,11 @@ export default function Services() {
 
     const getIcon = (iconName: string) => {
         const Icon = iconMap[iconName] || Code;
-        return <Icon size={40} />;
+        return <Icon size={40} strokeWidth={1.8} />;
     };
 
     if (loading) {
-        return <div className="text-center py-20">Loading services...</div>;
+        return <div className="text-center py-20 text-lg">Loading services...</div>;
     }
 
     if (services.length === 0) {
@@ -51,66 +48,73 @@ export default function Services() {
     }
 
     return (
-        <section id="services" className="py-20 bg-gray-50 dark:bg-gray-800">
-            <div className="container mx-auto px-4 max-w-7xl">
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl font-bold mb-4">Services I Offer</h2>
-                    <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        <section id="services" className="py-16 md:py-20 bg-gray-50 dark:bg-gray-900">
+            <div className="container mx-auto px-5 sm:px-6 lg:px-8 max-w-7xl">
+                <div className="text-center mb-12 md:mb-16">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                        Services I Offer
+                    </h2>
+                    <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                         Professional development services tailored to your needs
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {services.map((service, index) => (
                         <motion.div
                             key={service.id}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 25 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className={`bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg hover:shadow-xl transition ${service.featured ? 'ring-2 ring-blue-500' : ''
-                                }`}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            className={`group relative bg-white dark:bg-gray-800 rounded-xl p-6 md:p-8 shadow-lg 
+                                hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700
+                                ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30 dark:shadow-blue-900/20' : ''}`}
                         >
                             {service.featured && (
-                                <span className="inline-block px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full mb-4">
+                                <span className="absolute -top-3 right-4 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-md">
                                     POPULAR
                                 </span>
                             )}
 
-                            <div className="text-blue-600 dark:text-blue-400 mb-4">
+                            <div className="flex justify-center mb-6 text-blue-600 dark:text-blue-400">
                                 {getIcon(service.icon)}
                             </div>
 
-                            <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
+                            <h3 className="text-xl md:text-2xl font-bold mb-3 text-center">
+                                {service.title}
+                            </h3>
 
-                            <p className="text-gray-600 dark:text-gray-400 mb-4">
+                            <p className="text-gray-600 dark:text-gray-400 mb-5 text-center text-sm md:text-base">
                                 {service.description}
                             </p>
 
                             {service.price_range && (
-                                <p className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-2">
+                                <p className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-3 text-center">
                                     {service.price_range}
                                 </p>
                             )}
 
                             {service.delivery_time && (
-                                <p className="text-sm text-gray-500 dark:text-gray-500 mb-4">
+                                <p className="text-sm text-gray-500 dark:text-gray-400 mb-5 text-center">
                                     ⏱️ {service.delivery_time}
                                 </p>
                             )}
 
-                            <ul className="space-y-2 mb-6">
+                            <ul className="space-y-2.5 mb-7 text-sm md:text-base">
                                 {service.features_list.map((feature, idx) => (
-                                    <li key={idx} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
-                                        <span className="text-green-500 mt-1">✓</span>
+                                    <li key={idx} className="flex items-start gap-2.5 text-gray-700 dark:text-gray-300">
+                                        <span className="text-green-500 mt-1 text-lg">✓</span>
                                         <span>{feature}</span>
                                     </li>
                                 ))}
                             </ul>
 
-                            {/* Fixed button/link */}
                             <a
                                 href="#contact"
-                                className="block w-full text-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium"
+                                className="block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 
+                                    text-white rounded-lg font-medium transition-all duration-300
+                                    shadow-md hover:shadow-lg active:scale-98"
                             >
                                 Get Started
                             </a>
