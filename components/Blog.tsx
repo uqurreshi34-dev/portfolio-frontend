@@ -41,7 +41,7 @@ export default function Blog() {
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold mb-4">Latest Blog Posts</h2>
                     <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        Thoughts on web development, programming, and technology
+                        Thoughts on web development, programming, technology and food
                     </p>
                 </div>
 
