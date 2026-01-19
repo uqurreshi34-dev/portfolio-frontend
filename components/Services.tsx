@@ -61,27 +61,21 @@ export default function Services() {
                 </div>
 
                 {/* Cards grid - this is the critical part */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                    {services.map((service, index) => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
+                    {services.map((service) => (
                         <motion.div
                             key={service.id}
-                            initial={{ opacity: 0, y: 25 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            // ────────────────────────────────────────────────
-                            //   Most important lines are these three ↓↓↓
+                            // ... animation props ...
                             className={`
-        mx-auto
-        w-full max-w-[380px]           ← adjust this value if you want cards wider/narrower
-        bg-white dark:bg-gray-800
-        rounded-xl p-6 md:p-8
-        shadow-lg hover:shadow-2xl
-        transition-all duration-300
-        border border-gray-100 dark:border-gray-700
-        ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30 dark:shadow-blue-900/20' : ''}
-      `}
-                        // ────────────────────────────────────────────────
+                                w-full max-w-sm                
+                                mx-auto                       
+                                bg-white dark:bg-gray-800
+                                rounded-xl p-6 md:p-8
+                                shadow-lg hover:shadow-2xl
+                                transition-all duration-300
+                                border border-gray-100 dark:border-gray-700
+                                ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
+                            `}
                         >
                             {/* POPULAR badge */}
                             {service.featured && (
@@ -132,7 +126,8 @@ export default function Services() {
                             </a>
                         </motion.div>
                     ))}
-                </div>            </div>
+                </div>
+            </div>
         </section>
     );
 }

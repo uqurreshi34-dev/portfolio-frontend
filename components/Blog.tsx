@@ -45,14 +45,12 @@ export default function Blog() {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {posts.map((post, index) => (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+                    {posts.map((post) => (
                         <motion.article
                             key={post.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition group"
+                            // ... animation props ...
+                            className="w-full max-w-md mx-auto bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition group"
                         >
                             {post.featured_image && (
                                 <div className="relative h-48 overflow-hidden">
