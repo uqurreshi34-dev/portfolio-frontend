@@ -70,14 +70,16 @@ export default function Services() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             className={`
-        bg-white dark:bg-gray-800
-        rounded-xl p-6 md:p-8
-        shadow-lg hover:shadow-2xl
-        transition-all duration-300
-        border border-gray-100 dark:border-gray-700
-        relative
-        ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
-      `}
+                          w-full max-w-md
+                          bg-white dark:bg-gray-800
+                          rounded-xl p-6 md:p-8
+                          shadow-lg hover:shadow-2xl
+                          transition-all duration-300
+                          border border-gray-100 dark:border-gray-700
+                          relative
+                          flex flex-col
+                          ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
+                        `}
                         >
                             {/* POPULAR badge */}
                             {service.featured && (
@@ -110,27 +112,28 @@ export default function Services() {
                                 </p>
                             )}
 
-                            <ul className="space-y-2.5 mb-8 text-left text-sm md:text-base">
-                                {service.features_list.map((feature, idx) => (
-                                    <li key={idx} className="flex items-start gap-2.5">
-                                        <span className="text-green-500 mt-0.5 text-lg shrink-0">✓</span>
-                                        <span>{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                            {/* This will grow to push button down */}
+                            <div className="grow">
+                                <ul className="space-y-2.5 mb-8 text-left text-sm md:text-base">
+                                    {service.features_list.map((feature, idx) => (
+                                        <li key={idx} className="flex items-start gap-2.5">
+                                            <span className="text-green-500 mt-0.5 text-lg shrink-0">✓</span>
+                                            <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
 
+                            {/* Button stays at bottom thanks to flex-grow + mt-auto */}
                             <a
                                 href="#contact"
-                                className="block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
+                                className="block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg mt-auto"
                             >
                                 Get Started
                             </a>
                         </motion.div>
                     ))}
                 </div>
-
-
-
             </div>
         </section>
     );
