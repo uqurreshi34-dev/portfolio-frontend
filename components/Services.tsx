@@ -82,9 +82,14 @@ export default function Services() {
                         >
 
                             {service.featured && (
-                                <span className="absolute -top-3 right-6 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-md z-10">
+                                <motion.span
+                                    initial={{ scale: 0.9, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    whileHover={{ scale: 1.1 }}
+                                    className="absolute -top-3 right-6 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-md z-10 cursor-default"
+                                >
                                     POPULAR
-                                </span>
+                                </motion.span>
                             )}
                             {/* Row 1: Icon */}
                             <div className="flex justify-center text-blue-600">{getIcon(service.icon)}</div>
