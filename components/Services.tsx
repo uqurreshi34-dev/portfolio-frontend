@@ -81,58 +81,68 @@ export default function Services() {
                           ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
                         `}
                         >
+                            {/* ── TOP SECTION ── (variable height) ── */}
+                            <div className="flex flex-col items-center mb-6">
+                                <div className="text-blue-600 dark:text-blue-400 mb-6">
+                                    {getIcon(service.icon)}
+                                </div>
+
+                                <h3 className="text-xl md:text-2xl font-bold mb-3 text-center">
+                                    {service.title}
+                                </h3>
+
+                                <p className="text-gray-600 dark:text-gray-400 mb-5 text-center text-sm md:text-base">
+                                    {service.description}
+                                </p>
+                            </div>
+
+                            {/* ── BOTTOM SECTION ── (gets pushed down + internal alignment) ── */}
+                            <div className="mt-auto flex flex-col items-center">
+                                {/* Price & Delivery – always appear together at the top of bottom section */}
+                                <div className="text-center mb-6 w-full">
+                                    {service.price_range && (
+                                        <p className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-2">
+                                            {service.price_range}
+                                        </p>
+                                    )}
+
+                                    {service.delivery_time && (
+                                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                                            ⏱️ {service.delivery_time}
+                                        </p>
+                                    )}
+                                </div>
+
+                                {/* Features list – takes remaining space if needed, but stays aligned */}
+                                {service.features_list?.length > 0 && (
+                                    <div className="w-full mb-8">
+                                        <ul className="space-y-2.5 text-left text-sm md:text-base">
+                                            {service.features_list.map((feature, idx) => (
+                                                <li key={idx} className="flex items-start gap-2.5">
+                                                    <span className="text-green-500 mt-0.5 text-lg shrink-0">✓</span>
+                                                    <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+
+                                {/* Button – always at very bottom */}
+                                <a
+                                    href="#contact"
+                                    className="block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
+                                >
+                                    Get Started
+                                </a>
+                            </div>
+
                             {/* POPULAR badge */}
                             {service.featured && (
                                 <span className="absolute -top-3 right-6 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-md">
                                     POPULAR
                                 </span>
                             )}
-
-                            <div className="flex justify-center mb-6 text-blue-600 dark:text-blue-400">
-                                {getIcon(service.icon)}
-                            </div>
-
-                            <h3 className="text-xl md:text-2xl font-bold mb-3 text-center">
-                                {service.title}
-                            </h3>
-
-                            <p className="text-gray-600 dark:text-gray-400 mb-5 text-center text-sm md:text-base">
-                                {service.description}
-                            </p>
-
-                            {service.price_range && (
-                                <p className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-3 text-center">
-                                    {service.price_range}
-                                </p>
-                            )}
-
-                            {service.delivery_time && (
-                                <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 text-center">
-                                    ⏱️ {service.delivery_time}
-                                </p>
-                            )}
-
-                            {/* This will grow to push button down */}
-                            <div className="grow">
-                                <ul className="space-y-2.5 mb-8 text-left text-sm md:text-base">
-                                    {service.features_list.map((feature, idx) => (
-                                        <li key={idx} className="flex items-start gap-2.5">
-                                            <span className="text-green-500 mt-0.5 text-lg shrink-0">✓</span>
-                                            <span className="text-gray-700 dark:text-gray-300">{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            {/* Button stays at bottom thanks to flex-grow + mt-auto */}
-                            <a
-                                href="#contact"
-                                className="block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg mt-auto"
-                            >
-                                Get Started
-                            </a>
-                        </motion.div>
-                    ))}
+                        </motion.div>))}
                 </div>
             </div>
         </section>
