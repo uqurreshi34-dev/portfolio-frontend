@@ -73,7 +73,7 @@ export default function SocialFeed() {
                         <motion.div
                             key={post.id}
                             // ... animation props ...
-                            className="w-full max-w-md mx-auto bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition"
+                            className="w-full max-w-md mx-auto bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition flex flex-col"
                         >
                             <div className="flex items-center gap-3 mb-4">
                                 <span
@@ -89,25 +89,26 @@ export default function SocialFeed() {
                                 </span>
                             </div>
 
-                            <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-4">
-                                {post.content}
-                            </p>
-
-                            {post.image_url && (
-                                <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden">
-                                    <Image
-                                        src={post.image_url}
-                                        alt="Post image"
-                                        fill
-                                        className="object-cover"
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        // Optional: nice loading effect
-                                        placeholder="blur"
-                                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/OhPPQAJJAPXdxCaAAAAAElFTkSuQmCC" // very light gray or real low-res blur
-                                    />
-                                </div>
-                            )}
                             <div className="grow">
+                                <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-4">
+                                    {post.content}
+                                </p>
+
+                                {post.image_url && (
+                                    <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden">
+                                        <Image
+                                            src={post.image_url}
+                                            alt="Post image"
+                                            fill
+                                            className="object-cover"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            // Optional: nice loading effect
+                                            placeholder="blur"
+                                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/OhPPQAJJAPXdxCaAAAAAElFTkSuQmCC" // very light gray or real low-res blur
+                                        />
+                                    </div>
+                                )}
+
                                 <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-5">
                                     <span className="flex items-center gap-1">
                                         <Heart size={16} />
@@ -125,6 +126,7 @@ export default function SocialFeed() {
                                     )}
                                 </div>
                             </div>
+
                             <a
                                 href={post.url}
                                 target="_blank"
@@ -138,6 +140,6 @@ export default function SocialFeed() {
                     ))}
                 </div>
             </div>
-        </section >
+        </section>
     );
 }
