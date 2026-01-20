@@ -46,12 +46,29 @@ export default function Blog() {
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-                    {posts.map((post) => (
+                    {posts.map((post, index) => (
                         <motion.article
                             key={post.id}
-                            // ... animation props ...
-                            className="w-full max-w-md mx-auto bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition group"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            className={`
+                            bg-gray-50 dark:bg-gray-800 
+                            rounded-lg overflow-hidden 
+                            shadow-lg hover:shadow-xl 
+                            transition group
+                            flex flex-col
+                            relative
+                            ${post.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
+                        `}
                         >
+                            {/* FEATURED badge */}
+                            {post.featured && (
+                                <span className="absolute top-4 right-4 z-10 px-3 py-1 bg-yellow-500 text-white text-xs font-bold rounded-full shadow-md">
+                                    FEATURED
+                                </span>
+                            )}
+
                             {post.featured_image && (
                                 <div className="relative h-48 overflow-hidden">
                                     <Image
@@ -61,13 +78,12 @@ export default function Blog() {
                                         className="object-cover group-hover:scale-105 transition duration-300"
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         placeholder="blur"
-                                        // light blue blur for blog posts
                                         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
                                     />
                                 </div>
                             )}
 
-                            <div className="p-6">
+                            <div className="p-6 flex flex-col grow">
                                 <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-3">
                                     <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full text-xs font-medium">
                                         {post.category}
@@ -84,11 +100,11 @@ export default function Blog() {
                                     </Link>
                                 </h3>
 
-                                <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+                                <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3 grow">
                                     {post.excerpt}
                                 </p>
 
-                                <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-500">
+                                <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-500 mb-4">
                                     <div className="flex items-center gap-4">
                                         <span className="flex items-center gap-1">
                                             <Calendar size={14} />
@@ -107,7 +123,7 @@ export default function Blog() {
 
                                 <Link
                                     href={`/blog/${post.slug}`}
-                                    className="inline-block mt-4 text-blue-600 hover:text-blue-700 font-medium"
+                                    className="inline-block mt-auto text-blue-600 hover:text-blue-700 font-medium"
                                 >
                                     Read More →
                                 </Link>
