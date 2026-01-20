@@ -123,9 +123,17 @@ export default function Services() {
                             </ul>
 
                             {/* Row 7: Button */}
-                            <a href="#contact" className="mt-auto block w-full text-center px-6 py-3.5 bg-blue-600 text-white rounded-lg">
+                            <motion.a
+                                href="#contact"
+                                whileHover={{
+                                    scale: 1.03,
+                                    backgroundColor: "#1d4ed8", // A slightly darker blue (blue-700)
+                                }}
+                                whileTap={{ scale: 0.97 }}
+                                className="block w-full text-center px-6 py-3.5 bg-blue-600 text-white rounded-lg font-medium transition-colors shadow-md hover:shadow-xl"
+                            >
                                 Get Started
-                            </a>
+                            </motion.a>
                         </motion.div>
                     ))}
                 </div>
