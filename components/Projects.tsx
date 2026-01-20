@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Star } from 'lucide-react';
 import { getProjects } from '@/lib/api';
 import { Project } from '@/types';
 import { SkeletonProjectCard } from '@/components/SkeletonLoader';
@@ -58,9 +58,20 @@ export default function Projects() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             viewport={{ once: true }} // optional: animate only once
-                            className="bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition w-full sm:w-80 md:w-96"
+                            className={`bg-gray-50 dark:bg-gray-800 rounded-lg
+                                 overflow-hidden shadow-lg hover:shadow-xl transition w-full sm:w-80 md:w-96 relative
+                                 ${project.featured ? 'ring-2 ring-yellow-500/50' : ''}`}
                             whileHover={{ scale: 1.05, y: -5 }} // optional nice hover lift (add if you want subtle scale)
+
                         >
+
+                            {/* FEATURED badge with star */}
+                            {project.featured && (
+                                <div className="absolute top-4 right-4 z-10 flex items-center gap-1 px-3 py-1 bg-yellow-500 text-white text-xs font-bold rounded-full shadow-md">
+                                    <Star size={12} fill="white" />
+                                    FEATURED
+                                </div>
+                            )}
                             {project.image && (
                                 <div className="relative w-full h-48 overflow-hidden"> {/* ← Critical wrapper! */}
                                     <Image
