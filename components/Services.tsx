@@ -66,21 +66,26 @@ export default function Services() {
                     {services.map((service, index) => (
                         <motion.div
                             key={service.id}
-                            // ... existing framer-motion props ...
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
                             className={`
-                bg-white dark:bg-gray-800 rounded-xl p-6 md:p-8
-                shadow-lg transition-all duration-300 relative
-                border border-gray-100 dark:border-gray-700
-                ${service.featured ? 'ring-2 ring-blue-500/50' : ''}
-            `}
+                            bg-white dark:bg-gray-800
+                            rounded-xl p-6 md:p-8
+                            shadow-lg hover:shadow-2xl
+                            transition-all duration-300
+                            border border-gray-100 dark:border-gray-700
+                            relative
+                            ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
+                        `}
                             style={{
                                 display: 'grid',
-                                gridRow: 'span 7',     // 2. Card spans all 7 rows
-                                gridTemplateRows: 'subgrid', // 3. The Magic: Align children to parent's rows
+                                gridRow: 'span 7',
+                                gridTemplateRows: 'subgrid',
                                 gap: '1rem'
                             }}
                         >
-
+                            {/* 1. THE BADGE: Absolute positioned, doesn't affect grid rows */}
                             {service.featured && (
                                 <motion.span
                                     initial={{ scale: 0.9, opacity: 0 }}
@@ -91,46 +96,55 @@ export default function Services() {
                                     POPULAR
                                 </motion.span>
                             )}
+
                             {/* Row 1: Icon */}
-                            <div className="flex justify-center text-blue-600">{getIcon(service.icon)}</div>
+                            <div className="flex justify-center text-blue-600 dark:text-blue-400">
+                                {getIcon(service.icon)}
+                            </div>
 
                             {/* Row 2: Title */}
-                            <h3 className="text-xl md:text-2xl font-bold text-center">{service.title}</h3>
+                            <h3 className="text-xl md:text-2xl font-bold text-center">
+                                {service.title}
+                            </h3>
 
                             {/* Row 3: Description */}
-                            <p className="text-gray-600 dark:text-gray-400 text-center text-sm leading-relaxed">
+                            <p className="text-gray-600 dark:text-gray-400 text-center text-sm md:text-base leading-relaxed">
                                 {service.description}
                             </p>
 
                             {/* Row 4: Price */}
-                            <div className="text-3xl font-bold text-blue-600 text-center">
-                                {service.price_range || '\u00A0'} {/* Use non-breaking space if empty to keep height */}
+                            <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 text-center">
+                                {service.price_range || '\u00A0'}
                             </div>
 
-                            {/* Row 5: Delivery */}
-                            <div className="text-sm text-gray-500 text-center">
+                            {/* Row 5: Delivery Time */}
+                            <div className="text-sm md:text-base text-gray-500 dark:text-gray-400 text-center">
                                 {service.delivery_time ? `⏱️ ${service.delivery_time}` : '\u00A0'}
                             </div>
 
                             {/* Row 6: Features */}
-                            <ul className="space-y-2 text-left text-sm">
-                                {service.features_list?.map((feature, idx) => (
-                                    <li key={idx} className="flex items-start gap-2.5">
-                                        <span className="text-green-500 text-lg">✓</span>
-                                        <span>{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className="min-h-[100px]"> {/* Ensures a baseline for the list */}
+                                {service.features_list?.length > 0 && (
+                                    <ul className="space-y-2 text-left text-sm md:text-base">
+                                        {service.features_list.map((feature, idx) => (
+                                            <li key={idx} className="flex items-start gap-2.5">
+                                                <span className="text-green-500 text-lg shrink-0 mt-0.5">✓</span>
+                                                <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
 
-                            {/* Row 7: Button */}
+                            {/* Row 7: THE BUTTON: Now with motion properties */}
                             <motion.a
                                 href="#contact"
                                 whileHover={{
-                                    scale: 1.03,
-                                    backgroundColor: "#1d4ed8", // A slightly darker blue (blue-700)
+                                    scale: 1.02,
+                                    backgroundColor: "#1d4ed8", // darkens to blue-700
                                 }}
-                                whileTap={{ scale: 0.97 }}
-                                className="block w-full text-center px-6 py-3.5 bg-blue-600 text-white rounded-lg font-medium transition-colors shadow-md hover:shadow-xl"
+                                whileTap={{ scale: 0.98 }}
+                                className="block w-full text-center px-6 py-3.5 bg-blue-600 text-white rounded-lg font-medium transition-colors shadow-md hover:shadow-lg"
                             >
                                 Get Started
                             </motion.a>
