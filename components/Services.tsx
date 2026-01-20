@@ -59,82 +59,60 @@ export default function Services() {
                     </p>
                 </div>
 
-                {/* Using subgrid for perfect alignment */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                {/* 1. Update the parent container to define the 7 rows */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-auto"
+                    style={{ gridTemplateRows: 'repeat(7, auto)' }}>
+
                     {services.map((service, index) => (
                         <motion.div
                             key={service.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            // ... existing framer-motion props ...
                             className={`
-                                bg-white dark:bg-gray-800
-                                rounded-xl p-6 md:p-8
-                                shadow-lg hover:shadow-2xl
-                                transition-all duration-300
-                                border border-gray-100 dark:border-gray-700
-                                relative
-                                ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
-                            `}
+                bg-white dark:bg-gray-800 rounded-xl p-6 md:p-8
+                shadow-lg transition-all duration-300 relative
+                border border-gray-100 dark:border-gray-700
+                ${service.featured ? 'ring-2 ring-blue-500/50' : ''}
+            `}
                             style={{
                                 display: 'grid',
-                                gridTemplateRows: 'auto auto minmax(120px, auto) auto auto auto auto',
+                                gridRow: 'span 7',     // 2. Card spans all 7 rows
+                                gridTemplateRows: 'subgrid', // 3. The Magic: Align children to parent's rows
                                 gap: '1rem'
                             }}
                         >
-                            {/* POPULAR badge */}
-                            {service.featured && (
-                                <span className="absolute -top-3 right-6 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-md z-10">
-                                    POPULAR
-                                </span>
-                            )}
-
                             {/* Row 1: Icon */}
-                            <div className="flex justify-center text-blue-600 dark:text-blue-400">
-                                {getIcon(service.icon)}
-                            </div>
+                            <div className="flex justify-center text-blue-600">{getIcon(service.icon)}</div>
 
                             {/* Row 2: Title */}
-                            <h3 className="text-xl md:text-2xl font-bold text-center">
-                                {service.title}
-                            </h3>
+                            <h3 className="text-xl md:text-2xl font-bold text-center">{service.title}</h3>
 
-                            {/* Row 3: Description (min height 120px forces alignment) */}
-                            <p className="text-gray-600 dark:text-gray-400 text-center text-sm md:text-base leading-relaxed">
+                            {/* Row 3: Description */}
+                            <p className="text-gray-600 dark:text-gray-400 text-center text-sm leading-relaxed">
                                 {service.description}
                             </p>
 
                             {/* Row 4: Price */}
-                            {service.price_range && (
-                                <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 text-center">
-                                    {service.price_range}
-                                </p>
-                            )}
+                            <div className="text-3xl font-bold text-blue-600 text-center">
+                                {service.price_range || '\u00A0'} {/* Use non-breaking space if empty to keep height */}
+                            </div>
 
-                            {/* Row 5: Delivery Time */}
-                            {service.delivery_time && (
-                                <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 text-center">
-                                    ⏱️ {service.delivery_time}
-                                </p>
-                            )}
+                            {/* Row 5: Delivery */}
+                            <div className="text-sm text-gray-500 text-center">
+                                {service.delivery_time ? `⏱️ ${service.delivery_time}` : '\u00A0'}
+                            </div>
 
                             {/* Row 6: Features */}
-                            {service.features_list?.length > 0 && (
-                                <ul className="space-y-2 text-left text-sm md:text-base">
-                                    {service.features_list.map((feature, idx) => (
-                                        <li key={idx} className="flex items-start gap-2.5">
-                                            <span className="text-green-500 text-lg shrink-0 mt-0.5">✓</span>
-                                            <span className="text-gray-700 dark:text-gray-300">{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
+                            <ul className="space-y-2 text-left text-sm">
+                                {service.features_list?.map((feature, idx) => (
+                                    <li key={idx} className="flex items-start gap-2.5">
+                                        <span className="text-green-500 text-lg">✓</span>
+                                        <span>{feature}</span>
+                                    </li>
+                                ))}
+                            </ul>
 
                             {/* Row 7: Button */}
-                            <a
-                                href="#contact"
-                                className="block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
-                            >
+                            <a href="#contact" className="mt-auto block w-full text-center px-6 py-3.5 bg-blue-600 text-white rounded-lg">
                                 Get Started
                             </a>
                         </motion.div>
