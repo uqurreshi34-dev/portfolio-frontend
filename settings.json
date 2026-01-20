@@ -1,4 +1,6 @@
 {
+    "css.lint.unknownAtRules": "ignore",
+    "css.validate": true,
     "tailwindCSS.experimental.configFile": null,
     "tailwindCSS.includeLanguages": {
         "typescript": "javascript",
@@ -7,6 +9,5 @@
     "editor.quickSuggestions": {
         "strings": "on"
     },
-    "css.validate": false,
     "tailwindCSS.validate": true
 }

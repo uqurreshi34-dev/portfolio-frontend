@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Heart, MessageCircle, Share2 } from 'lucide-react';
 import { getSocialPosts } from '@/lib/api';
 import { SocialPost } from '@/types';
+import { SkeletonSocialCard } from './SkeletonLoader';
 import Image from 'next/image';
 
 export default function SocialFeed() {
@@ -51,7 +52,26 @@ export default function SocialFeed() {
     };
 
     if (loading) {
-        return <div className="text-center py-20">Loading social activity...</div>;
+        return (
+            <section className="py-20 bg-white dark:bg-gray-900">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="text-center mb-12">
+                        <h2 className="text-4xl font-bold mb-4">Recent Activity</h2>
+                        <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                            What I&apos;ve been sharing across the web
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <SkeletonSocialCard />
+                        <SkeletonSocialCard />
+                        <SkeletonSocialCard />
+                        <SkeletonSocialCard />
+                        <SkeletonSocialCard />
+                        <SkeletonSocialCard />
+                    </div>
+                </div>
+            </section>
+        );
     }
 
     if (posts.length === 0) {

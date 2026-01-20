@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { getSkills } from '@/lib/api';
 import { Skill } from '@/types';
+import { SkeletonSkillsCard } from './SkeletonLoader';
 
 export default function Skills() {
     const [skills, setSkills] = useState<Skill[]>([]);
@@ -25,7 +26,18 @@ export default function Skills() {
     }, []);
 
     if (loading) {
-        return <div className="text-center py-20">Loading skills...</div>;
+        return (
+            <section className="py-20 bg-gray-50 dark:bg-gray-900">
+                <div className="container mx-auto px-4">
+                    <h2 className="text-4xl font-bold text-center mb-12">Skills & Technologies</h2>
+                    <div className="max-w-4xl mx-auto space-y-8">
+                        <SkeletonSkillsCard />
+                        <SkeletonSkillsCard />
+                        <SkeletonSkillsCard />
+                    </div>
+                </div>
+            </section>
+        );
     }
 
     // Group skills by category
@@ -69,7 +81,7 @@ export default function Skills() {
                                                 initial={{ width: 0 }}
                                                 whileInView={{ width: `${skill.proficiency}%` }}
                                                 transition={{ duration: 1, delay: 0.2 }}
-                                                className="bg-gradient-to-r from-blue-500 to-indigo-600 h-2 rounded-full"
+                                                className="bg-linear-to-r from-blue-500 to-indigo-600 h-2 rounded-full"
                                             />
                                         </div>
                                     </div>

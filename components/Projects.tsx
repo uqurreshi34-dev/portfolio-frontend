@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { getProjects } from '@/lib/api';
 import { Project } from '@/types';
+import { SkeletonProjectCard } from './SkeletonLoader';
 import Image from 'next/image';
 
 export default function Projects() {
@@ -28,7 +29,21 @@ export default function Projects() {
     }, []);
 
     if (loading) {
-        return <div className="text-center py-20">Loading projects...</div>;
+        return (
+            <section className="py-20 bg-white dark:bg-gray-900">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <h2 className="text-4xl font-bold text-center mb-12">My Projects</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <SkeletonProjectCard />
+                        <SkeletonProjectCard />
+                        <SkeletonProjectCard />
+                        <SkeletonProjectCard />
+                        <SkeletonProjectCard />
+                        <SkeletonProjectCard />
+                    </div>
+                </div>
+            </section>
+        );
     }
 
     return (

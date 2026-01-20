@@ -28,7 +28,26 @@ export default function Blog() {
     }, []);
 
     if (loading) {
-        return <div className="text-center py-20">Loading blog posts...</div>;
+        return (
+            <section className="py-20 bg-white dark:bg-gray-900">
+                <div className="container mx-auto px-4 max-w-7xl">
+                    <div className="text-center mb-12">
+                        <h2 className="text-4xl font-bold mb-4">Latest Blog Posts</h2>
+                        <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                            Thoughts on web development, programming, and technology
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <SkeletonBlogCard />
+                        <SkeletonBlogCard />
+                        <SkeletonBlogCard />
+                        <SkeletonBlogCard />
+                        <SkeletonBlogCard />
+                        <SkeletonBlogCard />
+                    </div>
+                </div>
+            </section>
+        );
     }
 
     if (posts.length === 0) {

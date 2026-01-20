@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Code, Server, Palette, Database, Smartphone, Globe, LucideIcon } from 'lucide-react';
 import { getServices } from '@/lib/api';
 import { Service } from '@/types';
+import { SkeletonCard } from './SkeletonLoader';
 
 export default function Services() {
     const [services, setServices] = useState<Service[]>([]);
@@ -40,7 +41,25 @@ export default function Services() {
     };
 
     if (loading) {
-        return <div className="text-center py-20 text-lg">Loading services...</div>;
+        return (
+            <section className="py-16 md:py-20 bg-gray-50 dark:bg-gray-900">
+                <div className="container mx-auto px-5 sm:px-6 lg:px-8 max-w-7xl">
+                    <div className="text-center mb-12 md:mb-16">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                            Services I Offer
+                        </h2>
+                        <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                            Professional development services tailored to your needs
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                        <SkeletonCard />
+                        <SkeletonCard />
+                        <SkeletonCard />
+                    </div>
+                </div>
+            </section>
+        );
     }
 
     if (services.length === 0) {
