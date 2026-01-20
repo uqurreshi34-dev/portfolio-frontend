@@ -81,24 +81,24 @@ export default function Services() {
                           ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
                         `}
                         >
-                            {/* ── TOP SECTION ── (variable height) ── */}
-                            <div className="flex flex-col items-center mb-6">
-                                <div className="text-blue-600 dark:text-blue-400 mb-6">
+                            {/* ── TOP SECTION ── now with controlled height ── */}
+                            <div className="flex flex-col items-center min-h-[220px] md:min-h-[260px] mb-6">
+                                <div className="flex justify-center mb-6 text-blue-600 dark:text-blue-400">
                                     {getIcon(service.icon)}
                                 </div>
 
-                                <h3 className="text-xl md:text-2xl font-bold mb-3 text-center">
+                                <h3 className="text-xl md:text-2xl font-bold mb-3 text-center min-h-12 flex items-center justify-center">
                                     {service.title}
                                 </h3>
 
-                                <p className="text-gray-600 dark:text-gray-400 mb-5 text-center text-sm md:text-base">
+                                <p className="text-gray-600 dark:text-gray-400 text-center text-sm md:text-base grow flex items-start">
                                     {service.description}
                                 </p>
                             </div>
 
-                            {/* ── BOTTOM SECTION ── (gets pushed down + internal alignment) ── */}
+                            {/* ── BOTTOM ALIGNED SECTION ── now starts at same height everywhere ── */}
                             <div className="mt-auto flex flex-col items-center">
-                                {/* Price & Delivery – always appear together at the top of bottom section */}
+                                {/* Price & Delivery – guaranteed same vertical start point */}
                                 <div className="text-center mb-6 w-full">
                                     {service.price_range && (
                                         <p className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-2">
@@ -113,7 +113,7 @@ export default function Services() {
                                     )}
                                 </div>
 
-                                {/* Features list – takes remaining space if needed, but stays aligned */}
+                                {/* Features list */}
                                 {service.features_list?.length > 0 && (
                                     <div className="w-full mb-8">
                                         <ul className="space-y-2.5 text-left text-sm md:text-base">
