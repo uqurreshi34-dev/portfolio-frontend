@@ -70,57 +70,62 @@ export default function Services() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             className={`
-                          w-full max-w-md
-                          bg-white dark:bg-gray-800
-                          rounded-xl p-6 md:p-8
-                          shadow-lg hover:shadow-2xl
-                          transition-all duration-300
-                          border border-gray-100 dark:border-gray-700
-                          relative
-                          grid
-                          [grid-rows:auto_1fr_auto]
-                          gap-6
-                          ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
-                        `}
+      w-full max-w-md
+      bg-white dark:bg-gray-800
+      rounded-xl p-6 md:p-8
+      shadow-lg hover:shadow-2xl
+      transition-all duration-300
+      border border-gray-100 dark:border-gray-700
+      relative
+      flex flex-col
+      ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
+    `}
                         >
-                            {/* ── Row 1: Top content (icon + title + description) ── auto height */}
+                            {/* 
+      1. Header – takes only the space it needs (variable height)
+      This part is intentionally NOT growing or having min-height
+    */}
                             <div className="flex flex-col items-center">
-                                <div className="flex justify-center mb-6 text-blue-600 dark:text-blue-400">
+                                <div className="mb-6 text-blue-600 dark:text-blue-400">
                                     {getIcon(service.icon)}
                                 </div>
 
-                                <h3 className="text-xl md:text-2xl font-bold mb-3 text-center">
+                                <h3 className="text-xl md:text-2xl font-bold mb-4 text-center leading-tight">
                                     {service.title}
                                 </h3>
 
-                                <p className="text-gray-600 dark:text-gray-400 text-center text-sm md:text-base">
+                                <p className="text-gray-600 dark:text-gray-400 text-center text-sm md:text-base leading-relaxed mb-8">
                                     {service.description}
                                 </p>
                             </div>
 
-                            {/* ── Row 2: Middle – grows to push bottom content down ── */}
-                            <div className="flex flex-col justify-start">
-                                {/* Price + Delivery – these will now be at the same height on every card */}
-                                <div className="text-center mb-6">
+                            {/* 
+      2. This is the KEY PART
+      mt-auto pushes this entire block (price + delivery + features) 
+      to the bottom — so the price starts at the SAME vertical position on every card
+    */}
+                            <div className="mt-auto flex flex-col items-center gap-6">
+
+                                {/* Price + delivery group – same vertical start on all cards */}
+                                <div className="text-center space-y-2">
                                     {service.price_range && (
-                                        <p className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-2">
+                                        <p className="text-2xl font-extrabold text-blue-600 dark:text-blue-400 tracking-tight">
                                             {service.price_range}
                                         </p>
                                     )}
-
                                     {service.delivery_time && (
-                                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                                        <p className="text-base font-medium text-gray-500 dark:text-gray-400">
                                             ⏱️ {service.delivery_time}
                                         </p>
                                     )}
                                 </div>
 
-                                {/* Features list */}
+                                {/* Features list – starts right below price/delivery on every card */}
                                 {service.features_list?.length > 0 && (
-                                    <ul className="space-y-2.5 text-left text-sm md:text-base mb-8">
+                                    <ul className="w-full space-y-2.5 text-left text-sm md:text-base">
                                         {service.features_list.map((feature, idx) => (
-                                            <li key={idx} className="flex items-start gap-2.5">
-                                                <span className="text-green-500 mt-0.5 text-lg shrink-0">✓</span>
+                                            <li key={idx} className="flex items-start gap-3">
+                                                <span className="text-green-500 text-xl leading-none mt-0.5 shrink-0">✓</span>
                                                 <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                                             </li>
                                         ))}
@@ -128,10 +133,13 @@ export default function Services() {
                                 )}
                             </div>
 
-                            {/* ── Row 3: Bottom – button always at card bottom ── auto height */}
+                            {/* 
+      3. Button – always at the very bottom
+      mt-8 gives nice breathing room above it
+    */}
                             <a
                                 href="#contact"
-                                className="block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg mt-auto"
+                                className="mt-8 block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
                             >
                                 Get Started
                             </a>
@@ -142,7 +150,8 @@ export default function Services() {
                                     POPULAR
                                 </span>
                             )}
-                        </motion.div>))}
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </section>
