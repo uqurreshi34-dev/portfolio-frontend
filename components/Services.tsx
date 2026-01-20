@@ -80,6 +80,12 @@ export default function Services() {
                                 gap: '1rem'
                             }}
                         >
+
+                            {service.featured && (
+                                <span className="absolute -top-3 right-6 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-md z-10">
+                                    POPULAR
+                                </span>
+                            )}
                             {/* Row 1: Icon */}
                             <div className="flex justify-center text-blue-600">{getIcon(service.icon)}</div>
 
