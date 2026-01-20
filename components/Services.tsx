@@ -70,8 +70,8 @@ export default function Services() {
                             whileInView={{ opacity: 1, y: 0 }} // Fades in and moves up to its spot
                             viewport={{ once: true, margin: "-50px" }} // Trigger animation slightly before it enters the screen
                             transition={{
-                                duration: 0.6,
-                                delay: index * 0.2, // This "staggers" them: Card 1 (0s), Card 2 (0.2s), Card 3 (0.4s)
+                                duration: 0.8,
+                                delay: index * 0.3, // This "staggers" them: Card 1 (0s), Card 2 (0.2s), Card 3 (0.4s)
                                 ease: "easeOut"
                             }}
                             className={`
