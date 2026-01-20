@@ -24,7 +24,7 @@ export default function Skills() {
 
         fetchSkills();
     }, []);
-
+    // Why 3 <SkeletonSkillsCard/>? Because you might have 3 skill categories (Frontend, Backend, Tools)
     if (loading) {
         return (
             <section className="py-20 bg-gray-50 dark:bg-gray-900">

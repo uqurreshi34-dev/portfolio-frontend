@@ -1,5 +1,9 @@
 // components/SkeletonLoader.tsx
 
+// This defines what ONE card looks like - it has 6 internal sections
+// in services.tsx we do <SkeletonCard/> 3 times - for card 1 (shows all 6 sections)
+// for card 2 (shows all 6 sections), for card 3 (shows all 6 sections) grey shimmers if(loading)
+// this logic applies to all Skeleton cards below
 export function SkeletonCard() {
     return (
         <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg relative overflow-hidden">
@@ -155,5 +159,48 @@ export function SkeletonProjectCard() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export function SkeletonBlogPost() {
+    return (
+        <article className="min-h-screen bg-white dark:bg-gray-900">
+            <div className="container mx-auto px-4 py-12 max-w-4xl">
+                {/* Back button */}
+                <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded w-32 mb-8 animate-pulse"></div>
+
+                {/* Featured image */}
+                <div className="relative w-full h-96 bg-gray-300 dark:bg-gray-700 rounded-lg mb-8 animate-pulse"></div>
+
+                {/* Category badge */}
+                <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded-full w-32 mb-4 animate-pulse"></div>
+
+                {/* Title */}
+                <div className="h-12 bg-gray-300 dark:bg-gray-700 rounded w-3/4 mb-4 animate-pulse"></div>
+
+                {/* Meta info */}
+                <div className="flex gap-4 mb-8">
+                    <div className="h-5 bg-gray-300 dark:bg-gray-700 rounded w-32 animate-pulse"></div>
+                    <div className="h-5 bg-gray-300 dark:bg-gray-700 rounded w-24 animate-pulse"></div>
+                    <div className="h-5 bg-gray-300 dark:bg-gray-700 rounded w-20 animate-pulse"></div>
+                </div>
+
+                {/* Content */}
+                <div className="space-y-4 mb-12">
+                    <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-full animate-pulse"></div>
+                    <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-full animate-pulse"></div>
+                    <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-5/6 animate-pulse"></div>
+                    <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-full animate-pulse"></div>
+                    <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-4/6 animate-pulse"></div>
+                </div>
+
+                {/* Tags */}
+                <div className="flex gap-2 mb-12">
+                    <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded-full w-20 animate-pulse"></div>
+                    <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded-full w-24 animate-pulse"></div>
+                    <div className="h-6 bg-gray-300 dark:bg-gray-700 rounded-full w-16 animate-pulse"></div>
+                </div>
+            </div>
+        </article>
     );
 }

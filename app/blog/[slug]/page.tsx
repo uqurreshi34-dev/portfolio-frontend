@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Calendar, Clock, Eye, ArrowLeft } from 'lucide-react';
 import { getBlogPost, submitComment } from '@/lib/api';
 import { BlogPost, CommentForm } from '@/types';
+import { SkeletonBlogPost } from '@/components/SkeletonLoader';
 
 export default function BlogPostPage() {
     const params = useParams();
@@ -55,8 +56,9 @@ export default function BlogPostPage() {
     };
 
     if (loading) {
-        return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+        return <SkeletonBlogPost />;
     }
+
 
     if (!post) {
         return (

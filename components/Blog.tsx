@@ -27,7 +27,7 @@ export default function Blog() {
 
         fetchPosts();
     }, []);
-
+    // why 6 <SkeletonBlogCard/> ? Because your code ABOVE shows 6 blog posts (.slice(0, 6))
     if (loading) {
         return (
             <section className="py-20 bg-white dark:bg-gray-900">
