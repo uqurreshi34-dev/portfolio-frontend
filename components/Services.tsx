@@ -77,29 +77,31 @@ export default function Services() {
                           transition-all duration-300
                           border border-gray-100 dark:border-gray-700
                           relative
-                          flex flex-col
+                          grid
+                          [grid-rows:auto_1fr_auto]
+                          gap-6
                           ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
                         `}
                         >
-                            {/* ── TOP SECTION ── now with controlled height ── */}
-                            <div className="flex flex-col items-center min-h-[220px] md:min-h-[260px] mb-6">
+                            {/* ── Row 1: Top content (icon + title + description) ── auto height */}
+                            <div className="flex flex-col items-center">
                                 <div className="flex justify-center mb-6 text-blue-600 dark:text-blue-400">
                                     {getIcon(service.icon)}
                                 </div>
 
-                                <h3 className="text-xl md:text-2xl font-bold mb-3 text-center min-h-12 flex items-center justify-center">
+                                <h3 className="text-xl md:text-2xl font-bold mb-3 text-center">
                                     {service.title}
                                 </h3>
 
-                                <p className="text-gray-600 dark:text-gray-400 text-center text-sm md:text-base grow flex items-start">
+                                <p className="text-gray-600 dark:text-gray-400 text-center text-sm md:text-base">
                                     {service.description}
                                 </p>
                             </div>
 
-                            {/* ── BOTTOM ALIGNED SECTION ── now starts at same height everywhere ── */}
-                            <div className="mt-auto flex flex-col items-center">
-                                {/* Price & Delivery – guaranteed same vertical start point */}
-                                <div className="text-center mb-6 w-full">
+                            {/* ── Row 2: Middle – grows to push bottom content down ── */}
+                            <div className="flex flex-col justify-start">
+                                {/* Price + Delivery – these will now be at the same height on every card */}
+                                <div className="text-center mb-6">
                                     {service.price_range && (
                                         <p className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-2">
                                             {service.price_range}
@@ -115,26 +117,24 @@ export default function Services() {
 
                                 {/* Features list */}
                                 {service.features_list?.length > 0 && (
-                                    <div className="w-full mb-8">
-                                        <ul className="space-y-2.5 text-left text-sm md:text-base">
-                                            {service.features_list.map((feature, idx) => (
-                                                <li key={idx} className="flex items-start gap-2.5">
-                                                    <span className="text-green-500 mt-0.5 text-lg shrink-0">✓</span>
-                                                    <span className="text-gray-700 dark:text-gray-300">{feature}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                                    <ul className="space-y-2.5 text-left text-sm md:text-base mb-8">
+                                        {service.features_list.map((feature, idx) => (
+                                            <li key={idx} className="flex items-start gap-2.5">
+                                                <span className="text-green-500 mt-0.5 text-lg shrink-0">✓</span>
+                                                <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 )}
-
-                                {/* Button – always at very bottom */}
-                                <a
-                                    href="#contact"
-                                    className="block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
-                                >
-                                    Get Started
-                                </a>
                             </div>
+
+                            {/* ── Row 3: Bottom – button always at card bottom ── auto height */}
+                            <a
+                                href="#contact"
+                                className="block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg mt-auto"
+                            >
+                                Get Started
+                            </a>
 
                             {/* POPULAR badge */}
                             {service.featured && (
