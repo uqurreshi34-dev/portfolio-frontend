@@ -107,30 +107,29 @@ export default function SocialFeed() {
                                     />
                                 </div>
                             )}
-
-                            <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-5">
-                                <span className="flex items-center gap-1">
-                                    <Heart size={16} />
-                                    {post.likes}
-                                </span>
-                                <span className="flex items-center gap-1">
-                                    <MessageCircle size={16} />
-                                    {post.comments}
-                                </span>
-                                {post.shares > 0 && (
+                            <div className="grow">
+                                <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-5">
                                     <span className="flex items-center gap-1">
-                                        <Share2 size={16} />
-                                        {post.shares}
+                                        <Heart size={16} />
+                                        {post.likes}
                                     </span>
-                                )}
+                                    <span className="flex items-center gap-1">
+                                        <MessageCircle size={16} />
+                                        {post.comments}
+                                    </span>
+                                    {post.shares > 0 && (
+                                        <span className="flex items-center gap-1">
+                                            <Share2 size={16} />
+                                            {post.shares}
+                                        </span>
+                                    )}
+                                </div>
                             </div>
-
-                            {/* Fixed missing <a> tag */}
                             <a
                                 href={post.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
+                                className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium mt-auto"
                             >
                                 View Post
                                 <ExternalLink size={16} />
@@ -139,6 +138,6 @@ export default function SocialFeed() {
                     ))}
                 </div>
             </div>
-        </section>
+        </section >
     );
 }
