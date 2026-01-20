@@ -70,54 +70,57 @@ export default function Services() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             className={`
+      group relative
       w-full max-w-md
       bg-white dark:bg-gray-800
       rounded-xl p-6 md:p-8
       shadow-lg hover:shadow-2xl
       transition-all duration-300
       border border-gray-100 dark:border-gray-700
-      relative
       flex flex-col
       ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
     `}
                         >
-                            {/* Header: icon + title + description — variable, NO grow here */}
-                            <div className="flex flex-col items-center">
-                                <div className="mb-6 text-blue-600 dark:text-blue-400">
+                            {/* Header part – fixed structure, no forced height */}
+                            <div className="flex flex-col items-center mb-8">
+                                <div className="mb-6 text-blue-600 dark:text-blue-400 transform group-hover:scale-110 transition-transform">
                                     {getIcon(service.icon)}
                                 </div>
 
-                                <h3 className="text-xl md:text-2xl font-bold mb-3 text-center leading-snug">
+                                <h3 className="text-xl md:text-2xl font-bold mb-4 text-center leading-tight">
                                     {service.title}
                                 </h3>
 
-                                <p className="text-gray-600 dark:text-gray-400 text-center text-sm md:text-base leading-relaxed mb-8 min-h-16 md:min-h-24">
+                                <p className="text-gray-600 dark:text-gray-400 text-center text-sm md:text-base leading-relaxed grow">
                                     {service.description}
                                 </p>
                             </div>
 
-                            {/* This div grows to fill space → pushes the price block down consistently */}
+                            {/* Spacer that grows → ensures price block starts at same height */}
                             <div className="grow" />
 
-                            {/* Aligned bottom content: price + delivery + features start at same height */}
-                            <div className="mt-6 flex flex-col items-center gap-6 text-center">
-                                {service.price_range && (
-                                    <p className="text-2xl md:text-3xl font-extrabold text-blue-600 dark:text-blue-400">
-                                        {service.price_range}
-                                    </p>
-                                )}
+                            {/* Bottom-aligned content block – this starts at consistent vertical position */}
+                            <div className="mt-auto pt-6 border-t border-gray-200 dark:border-gray-700">
+                                <div className="text-center space-y-3 mb-6">
+                                    {service.price_range && (
+                                        <p className="text-3xl font-extrabold text-blue-600 dark:text-blue-400 tracking-tight">
+                                            {service.price_range}
+                                        </p>
+                                    )}
 
-                                {service.delivery_time && (
-                                    <p className="text-base font-medium text-gray-500 dark:text-gray-400 flex items-center gap-2">
-                                        <span className="text-xl">⏱️</span> {service.delivery_time}
-                                    </p>
-                                )}
+                                    {service.delivery_time && (
+                                        <p className="text-base font-medium text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
+                                            <span>⏱️</span>
+                                            <span>{service.delivery_time}</span>
+                                        </p>
+                                    )}
+                                </div>
 
                                 {service.features_list?.length > 0 && (
-                                    <ul className="w-full space-y-2 text-left text-sm md:text-base mt-4">
+                                    <ul className="space-y-2.5 text-left text-sm md:text-base">
                                         {service.features_list.map((feature, idx) => (
                                             <li key={idx} className="flex items-start gap-3">
-                                                <span className="text-green-500 text-xl leading-none mt-0.5">✓</span>
+                                                <span className="text-green-500 text-xl font-bold leading-none mt-0.5 shrink-0">✓</span>
                                                 <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                                             </li>
                                         ))}
@@ -125,18 +128,18 @@ export default function Services() {
                                 )}
                             </div>
 
-                            {/* Button always last */}
+                            {/* Button at very bottom */}
                             <a
                                 href="#contact"
-                                className="mt-8 block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
+                                className="mt-8 block w-full text-center py-3.5 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-xl"
                             >
                                 Get Started
                             </a>
 
                             {/* POPULAR badge */}
                             {service.featured && (
-                                <span className="absolute -top-3 right-6 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-md">
-                                    POPULAR
+                                <span className="absolute -top-3 right-6 px-4 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-md uppercase tracking-wide">
+                                    Popular
                                 </span>
                             )}
                         </motion.div>
