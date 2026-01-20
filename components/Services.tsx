@@ -59,8 +59,8 @@ export default function Services() {
                     </p>
                 </div>
 
-                {/* Grid with equal height rows */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-fr">
+                {/* Using subgrid for perfect alignment */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {services.map((service, index) => (
                         <motion.div
                             key={service.id}
@@ -74,73 +74,69 @@ export default function Services() {
                                 transition-all duration-300
                                 border border-gray-100 dark:border-gray-700
                                 relative
-                                flex flex-col
                                 ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
                             `}
-                            style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr auto' }}
+                            style={{
+                                display: 'grid',
+                                gridTemplateRows: 'auto auto minmax(120px, auto) auto auto auto auto',
+                                gap: '1rem'
+                            }}
                         >
                             {/* POPULAR badge */}
                             {service.featured && (
-                                <span className="absolute -top-3 right-6 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-md">
+                                <span className="absolute -top-3 right-6 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full shadow-md z-10">
                                     POPULAR
                                 </span>
                             )}
 
-                            {/* Section 1: Icon + Title (fixed height) */}
-                            <div className="flex flex-col items-center mb-4">
-                                <div className="flex justify-center mb-6 text-blue-600 dark:text-blue-400">
-                                    {getIcon(service.icon)}
-                                </div>
-                                <h3 className="text-xl md:text-2xl font-bold text-center">
-                                    {service.title}
-                                </h3>
+                            {/* Row 1: Icon */}
+                            <div className="flex justify-center text-blue-600 dark:text-blue-400">
+                                {getIcon(service.icon)}
                             </div>
 
-                            {/* Section 2: Description (variable height, grows to match tallest) */}
-                            <div className="mb-6">
-                                <p className="text-gray-600 dark:text-gray-400 text-center text-sm md:text-base leading-relaxed">
-                                    {service.description}
+                            {/* Row 2: Title */}
+                            <h3 className="text-xl md:text-2xl font-bold text-center">
+                                {service.title}
+                            </h3>
+
+                            {/* Row 3: Description (min height 120px forces alignment) */}
+                            <p className="text-gray-600 dark:text-gray-400 text-center text-sm md:text-base leading-relaxed">
+                                {service.description}
+                            </p>
+
+                            {/* Row 4: Price */}
+                            {service.price_range && (
+                                <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 text-center">
+                                    {service.price_range}
                                 </p>
-                            </div>
+                            )}
 
-                            {/* Section 3: Price + Delivery + Features (grows if needed) */}
-                            <div className="flex flex-col gap-5">
-                                {/* Price and delivery time - always aligned */}
-                                <div className="text-center">
-                                    {service.price_range && (
-                                        <p className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-                                            {service.price_range}
-                                        </p>
-                                    )}
-                                    {service.delivery_time && (
-                                        <p className="text-sm md:text-base text-gray-500 dark:text-gray-400">
-                                            ⏱️ {service.delivery_time}
-                                        </p>
-                                    )}
-                                </div>
+                            {/* Row 5: Delivery Time */}
+                            {service.delivery_time && (
+                                <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 text-center">
+                                    ⏱️ {service.delivery_time}
+                                </p>
+                            )}
 
-                                {/* Features - always aligned */}
-                                {service.features_list?.length > 0 && (
-                                    <ul className="w-full space-y-2 text-left text-sm md:text-base">
-                                        {service.features_list.map((feature, idx) => (
-                                            <li key={idx} className="flex items-start gap-2.5">
-                                                <span className="text-green-500 text-lg shrink-0 mt-0.5">✓</span>
-                                                <span className="text-gray-700 dark:text-gray-300">{feature}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                            </div>
+                            {/* Row 6: Features */}
+                            {service.features_list?.length > 0 && (
+                                <ul className="space-y-2 text-left text-sm md:text-base">
+                                    {service.features_list.map((feature, idx) => (
+                                        <li key={idx} className="flex items-start gap-2.5">
+                                            <span className="text-green-500 text-lg shrink-0 mt-0.5">✓</span>
+                                            <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
 
-                            {/* Section 4: Button (always at bottom) */}
-                            <div className="mt-6">
-                                <a
-                                    href="#contact"
-                                    className="block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
-                                >
-                                    Get Started
-                                </a>
-                            </div>
+                            {/* Row 7: Button */}
+                            <a
+                                href="#contact"
+                                className="block w-full text-center px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
+                            >
+                                Get Started
+                            </a>
                         </motion.div>
                     ))}
                 </div>
