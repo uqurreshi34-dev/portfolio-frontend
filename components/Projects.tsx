@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { getProjects } from '@/lib/api';
 import { Project } from '@/types';
-import { SkeletonProjectCard } from './SkeletonLoader';
+import { SkeletonProjectCard } from '@/components/SkeletonLoader';
 import Image from 'next/image';
 
 export default function Projects() {

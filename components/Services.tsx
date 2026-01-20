@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Code, Server, Palette, Database, Smartphone, Globe, LucideIcon } from 'lucide-react';
 import { getServices } from '@/lib/api';
 import { Service } from '@/types';
-import { SkeletonCard } from './SkeletonLoader';
+import { SkeletonCard } from '@/components/SkeletonLoader';
 
 export default function Services() {
     const [services, setServices] = useState<Service[]>([]);

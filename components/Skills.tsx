@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { getSkills } from '@/lib/api';
 import { Skill } from '@/types';
-import { SkeletonSkillsCard } from './SkeletonLoader';
+import { SkeletonSkillsCard } from '@/components/SkeletonLoader';
 
 export default function Skills() {
     const [skills, setSkills] = useState<Skill[]>([]);

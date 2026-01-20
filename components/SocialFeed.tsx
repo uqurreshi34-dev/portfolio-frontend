@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Heart, MessageCircle, Share2 } from 'lucide-react';
 import { getSocialPosts } from '@/lib/api';
 import { SocialPost } from '@/types';
-import { SkeletonSocialCard } from './SkeletonLoader';
+import { SkeletonSocialCard } from '@/components/SkeletonLoader';
 import Image from 'next/image';
 
 export default function SocialFeed() {

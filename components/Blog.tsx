@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { Calendar, Clock, Eye } from 'lucide-react';
 import { getBlogPosts } from '@/lib/api';
 import { BlogPost } from '@/types';
+import { SkeletonBlogCard } from '@/components/SkeletonLoader';
 
 export default function Blog() {
     const [posts, setPosts] = useState<BlogPost[]>([]);
