@@ -64,7 +64,7 @@ export default function Blog() {
                         >
                             {/* FEATURED badge */}
                             {post.featured && (
-                                <span className="absolute -top-3 right-6 px-3 py-1 bg-yellow-500 text-white text-xs font-bold rounded-full shadow-md">
+                                <span className="absolute top-5 right-5 z-10 px-3 py-1 bg-yellow-500 text-white text-xs font-bold rounded-full shadow-md">
                                     FEATURED
                                 </span>
                             )}
