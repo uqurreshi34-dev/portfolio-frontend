@@ -60,15 +60,20 @@ export default function Services() {
                 </div>
 
                 {/* 1. Update the parent container to define the 7 rows */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-auto"
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 auto-rows-auto"
                     style={{ gridTemplateRows: 'repeat(7, auto)' }}>
 
                     {services.map((service, index) => (
                         <motion.div
                             key={service.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            initial={{ opacity: 0, y: 30 }} // Starts slightly lower (30px) and invisible
+                            whileInView={{ opacity: 1, y: 0 }} // Fades in and moves up to its spot
+                            viewport={{ once: true, margin: "-50px" }} // Trigger animation slightly before it enters the screen
+                            transition={{
+                                duration: 0.6,
+                                delay: index * 0.2, // This "staggers" them: Card 1 (0s), Card 2 (0.2s), Card 3 (0.4s)
+                                ease: "easeOut"
+                            }}
                             className={`
                             bg-white dark:bg-gray-800
                             rounded-xl p-6 md:p-8
