@@ -74,15 +74,20 @@ export default function Services() {
                                 delay: index * 0.3, // This "staggers" them: Card 1 (0s), Card 2 (0.2s), Card 3 (0.4s)
                                 ease: "easeOut"
                             }}
+                            // THE NEW HOVER EFFECT
+                            whileHover={{
+                                y: -10, // Lifts the card up by 10 pixels
+                                transition: { duration: 0.2, ease: "easeInOut" }
+                            }}/* We only transition specific properties to avoid 'jitter' */
                             className={`
-                            bg-white dark:bg-gray-800
-                            rounded-xl p-6 md:p-8
-                            shadow-lg hover:shadow-2xl
-                            transition-all duration-300
-                            border border-gray-100 dark:border-gray-700
-                            relative
-                            ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
-                        `}
+                                bg-white dark:bg-gray-800
+                                rounded-xl p-6 md:p-8
+                                shadow-lg hover:shadow-2xl
+                                transition-[shadow,background-color,border-color] duration-300 
+                                border border-gray-100 dark:border-gray-700
+                                relative cursor-default
+                                ${service.featured ? 'ring-2 ring-blue-500/50 shadow-blue-200/30' : ''}
+                            `}
                             style={{
                                 display: 'grid',
                                 gridRow: 'span 7',
