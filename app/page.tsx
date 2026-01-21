@@ -5,6 +5,7 @@ import Services from '@/components/Services';
 import Blog from '@/components/Blog';
 import SocialFeed from '@/components/SocialFeed';
 import Contact from '@/components/Contact';
+import Tools from '@/components/tools';
 
 
 
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <Projects />
       <Skills />
+      <Tools />
       <Services />
       <Blog />
       <SocialFeed />
